@@ -1,0 +1,41 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Runtime outputs
+records/
+model/
+summary/
+errors/
+outputs/
+logs/
+runs/
+
+# Checkpoints
+*.h5
+*.pth
+*.pt
+*.ckpt
+*.pkl
+
+# Temporary files
+tmp/
+temp/
+*.bak
+
+# Environment files
+.env
+.venv/
+venv/
+conda-env/
