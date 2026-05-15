@@ -84,22 +84,6 @@ data/
         └── anon_28_7_newyork_real_triple.json
 ```
 
-## Quick Test
-
-To quickly verify that the code can run, execute one training round on one Hangzhou traffic file:
-
-```bash
-python run_mrelight.py --dataset hangzhou --rounds 1 --gen 1 --traffic_index 0
-```
-
-After the run finishes, summarize the result with:
-
-```bash
-python summary.py --memo benchmark_1001 --validation_rounds 1
-```
-
-If both commands finish successfully, the basic training, testing, model saving, and result summarization pipeline is working.
-
 ## Default Run
 
 The default command is:
@@ -116,32 +100,6 @@ python run_mrelight.py --dataset hangzhou --rounds 120 --gen 1 --traffic_index -
 
 By default, the code runs MRELight on the Hangzhou dataset for 120 training rounds.
 
-## Running Other Datasets
-
-Run MRELight on Jinan:
-
-```bash
-python run_mrelight.py --dataset jinan
-```
-
-Run MRELight on New York:
-
-```bash
-python run_mrelight.py --dataset newyork
-```
-
-Run only one traffic file for debugging:
-
-```bash
-python run_mrelight.py --dataset hangzhou --traffic_index 0
-```
-
-Use fewer rounds for debugging:
-
-```bash
-python run_mrelight.py --dataset hangzhou --rounds 1 --traffic_index 0
-```
-
 ## Command Line Arguments
 
 | Argument | Description | Default |
@@ -156,20 +114,6 @@ python run_mrelight.py --dataset hangzhou --rounds 1 --traffic_index 0
 | `--multi_process` | Run different traffic files in parallel | `False` |
 | `--workers` | Maximum number of parallel traffic processes | `3` |
 
-## About `--gen`
-
-`--gen` controls the number of generators used in each training round.
-
-For example:
-
-```bash
-python run_mrelight.py --gen 1
-```
-
-means that one generator is used to collect training samples in each round.
-
-A larger value may collect more samples but will also require more computation.
-
 ## Outputs
 
 The code will generate the following output folders:
@@ -179,15 +123,6 @@ records/<memo>/
 model/<memo>/
 summary/<memo>/
 errors/<memo>/
-```
-
-For example, with the default `--memo benchmark_1001`, the outputs will be saved under:
-
-```text
-records/benchmark_1001/
-model/benchmark_1001/
-summary/benchmark_1001/
-errors/benchmark_1001/
 ```
 
 The `records/` folder stores training and testing logs.
@@ -204,12 +139,6 @@ After running experiments, use:
 
 ```bash
 python summary.py --memo benchmark_1001
-```
-
-For quick tests with only one training round, use:
-
-```bash
-python summary.py --memo benchmark_1001 --validation_rounds 1
 ```
 
 The summarized results will be saved to:
@@ -250,23 +179,6 @@ The reward normalization factor is:
 ```text
 NORMAL_FACTOR = 20
 ```
-
-## Basic Verification
-
-Before running full experiments, we recommend checking the Python files with:
-
-```bash
-python -m py_compile run_mrelight.py summary.py utils/*.py models/*.py
-```
-
-Then run a quick test:
-
-```bash
-python run_mrelight.py --dataset hangzhou --rounds 1 --gen 1 --traffic_index 0
-python summary.py --memo benchmark_1001 --validation_rounds 1
-```
-
-If these commands run successfully, the basic pipeline is correctly configured.
 
 ## Citation
 
